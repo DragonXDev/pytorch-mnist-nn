@@ -27,9 +27,51 @@ Once completed, run the model with the binary generated using
 poetry run python src/main.py
 ```
 
+## Optimizers
+
+For the purpose of MNIST, the Adam optimizer with ```lr=1e-3``` performs best
+
+![image](https://github.com/DragonXDev/pytorch-mnist-nn/assets/99859617/8ac61337-e8e0-45aa-9383-35fb368731fa)
+
+### Adam
+
+Starting with Stochastic Gradient Descent
+
+```math
+g = \frac{1}{m} \nabla_{\theta}\sum_{i}L(f(x^{(i)};\theta),y^{(i)})
+```
+Where $\theta$ is the models' params, $g$ is the negative direction of the gradient, $m$ is the size of the mini-batches of data, $f(x^{(i)}; \theta)$ is the neural network, $x^{(i)}$ is the training data, $y^{(i)}$ are the training labels, and $L()$ is the loss function.
+
+The Adam optimizer redefines SGD's params as such:
+
+```math
+m = \beta_{1}m + (1-\beta_{1})g
+```
+```math
+s = \beta_{2}s + (1-\beta_{2})g^{T}g
+```
+```math
+\theta = \theta - \epsilon_{k}\cdot\frac{m}{\sqrt{s+eps}}
+```
+
+For this project, $\beta_{1} = 0.9$, $\beta_{2} = 0.999$, and $eps$ (learning rate) $=$ 1e-3.
+
+### Nesterov Momentum $\nabla$
+
+Nesterov's Momentum Acceleration $\nabla$ (NAG) performs significantly worse than Adam.
+
+```math
+\nu = \alpha\nu - \epsilon\nabla_{\theta}(\frac{1}{m}\sum_{i}L(f(x^{(i)};\theta+\alpha\cdot\nu),y^{i})
+```
+```math
+\theta = \theta + \nu
+```
+
+The loss / cost after ```Epoch 10``` ended at ~ ```0.01253``` on average.
+
 ## Contributors
 
-I am the sole contributor for this project.
+I am the sole contributor of this project.
 
 ## License
 
