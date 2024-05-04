@@ -4,7 +4,7 @@ from torch.nn import CrossEntropyLoss
 
 # Instance of NN, calculate cost, optimize
 classifier = DigitClassifier().to('cuda')
-optimizer = optim.Adam(classifier.parameters(), lr=1e-3)
+optimizer = optim.SGD(classifier.parameters(),lr=1e-3,momentum=0.9,nesterov=True)
 cost_fn = CrossEntropyLoss()
 
 # Training Model
