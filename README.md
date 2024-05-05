@@ -61,7 +61,7 @@ For this project, $\beta_{1} = 0.9$, $\beta_{2} = 0.999$, and $eps$ (learning ra
 Nesterov's Momentum Acceleration $\nabla$ (NAG) performs significantly worse than Adam.
 
 ```math
-\nu = \alpha\nu - \epsilon\nabla_{\theta}(\frac{1}{m}\sum_{i}L(f(x^{(i)};\theta+\alpha\cdot\nu),y^{i})
+\nu = \alpha\nu - \epsilon\nabla_{\theta}(\frac{1}{m}\sum_{i}L(f(x^{(i)};\theta+\alpha\cdot\nu),y^{(i)})
 ```
 ```math
 \theta = \theta + \nu
